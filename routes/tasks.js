@@ -62,15 +62,25 @@ router.put('/tasks/:id', (req, res, next)=>{
 	}
 
 	if(task.title){
-		updTask.isDone = task.isDone;
+		updTask.title = task.title;
 	}
 
-	db.tasks.findOne({_id: mongojs.ObjectId(req.params.id)}, (err, task)=>{
+	if(!updTask){
+		res.status(400);
+		res.json({
+			"error":"Bad Data"
+		});
+	}else{
+		db.tasks.update({_id: mongojs.ObjectId(req.params.id)}, updTask, 
+		{}, (err, task)=>{
 		if(err){
 			res.send(err);
 		}
 		res.json(task);
 	});
+	}
+
+	
 });
 
 
