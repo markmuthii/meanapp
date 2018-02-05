@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongojs = require('mongojs');
-const db = mongojs('mongodb://mark:Mark77@ds237445.mlab.com:37445/meanapp', ['tasks']);
+const db = mongojs('mongodb://****:******@ds237445.mlab.com:37445/meanapp', ['tasks']);
 
 //Get all tasks
 router.get('/tasks', (req, res, next)=>{
